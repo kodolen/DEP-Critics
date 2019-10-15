@@ -1,12 +1,41 @@
 <?php
 
-
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use App\Team;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Client;
 
 class TeamsController extends Controller
 {
     public function show(){
-        echo "Test";
+        $this->fillAllTeamsInDB();
+        $team = Team::all();
+        dd($team);
     }
+
+    public function getAllTeams(){
+        $client = new Client();
+        $uri = 'https://api.football-data.org/v2/competitions/2003/teams';
+        $header = ['headers' => ['X-Auth-Token' => '6328bfcb1468465c83bfecd7bada80c7']];
+        $res = $client->get($uri, $header);
+        $data = json_decode($res->getBody()->getContents(), true);
+//        dd($data);
+        return $data['teams'];
+    }
+
+    public function fillAllTeamsInDB(){
+        $teams = $this->getAllTeams();
+
+        collect($teams)
+            ->each(function($team, $key){
+                Team::create([
+                    'team_id' => $team['id'],
+                    'name' => $team['name'],
+                    'logo' => $team['crestUrl']
+                ]);
+            });
+    }
+
 }

@@ -9,10 +9,17 @@ use GuzzleHttp\Client;
 
 class TeamsController extends Controller
 {
-    public function show(){
-        $this->fillAllTeamsInDB();
-        $team = Team::all();
-        dd($team);
+    public function showTeams(){
+        $teams = Team::all();
+
+        if($teams->isEmpty()){
+            $this->fillAllTeamsInDB();
+            $teams = Team::all();
+        }
+
+        return view('home', [
+           'teams' => $teams
+        ]);
     }
 
     public function getAllTeams(){
@@ -21,7 +28,6 @@ class TeamsController extends Controller
         $header = ['headers' => ['X-Auth-Token' => '6328bfcb1468465c83bfecd7bada80c7']];
         $res = $client->get($uri, $header);
         $data = json_decode($res->getBody()->getContents(), true);
-//        dd($data);
         return $data['teams'];
     }
 
@@ -36,6 +42,12 @@ class TeamsController extends Controller
                     'logo' => $team['crestUrl']
                 ]);
             });
+    }
+
+    public function showTeam($id){
+        $teams = Team::findOrFail($id);
+        echo $teams['name'];
+        echo $teams['team_id'];
     }
 
 }

@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/teams', 'TeamsController@show');
+Route::get('/teams', 'TeamsController@showTeams');
+Route::get('/teams/{id}', 'TeamsController@showTeam');
 
 

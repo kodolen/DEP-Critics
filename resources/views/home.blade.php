@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>DEP Critics</title>
 
+
     <!-- TODO: Install via NPM. -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -20,6 +21,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -59,14 +62,15 @@
 {{--</script>--}}
 
 <div class="row" id="teams-row">
-    <div class="col-md-6 col-sm-12">
-        One of three columns
-    </div>
-    <div class="col-md-3 col-sm-12">
-        One of three columns
-    </div>
-    <div class="col-md-3 col-sm-12">
-        One of three columns
+    <div class="col-md-8 offset-md-2">
+        <div class="row">
+            @foreach($teams as $team)
+                <div class="col-md-3">
+                    <h3>{{ $team->name }}</h3>
+                    <a href="{{ url('/team/'.$team->team_id)}}"><span>link</span></a>
+                </div>
+            @endforeach
+        </div>
     </div>
 </div>
 </body>

@@ -19,7 +19,7 @@ class TeamsController extends Controller
             $teams = Team::all();
         }
 
-        return view('home', [
+        return view('teams', [
             'teams' => $teams
         ]);
     }

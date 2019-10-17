@@ -11,12 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+//Route::get('', function () {
+//    echo"oke";
+//});
 
 Route::get('/teams', 'TeamsController@showTeams');
 Route::get('/teams/{id}', 'TeamsController@showTeam');
 Route::get('/teams/{id}/{player_id}', 'PlayerController@showPlayer');
 
 
+
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');

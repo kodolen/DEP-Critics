@@ -1,12 +1,8 @@
-h3 {
-    font-size: 20px;
-    color: green;
-}
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
 
-.nav {
+// Variables
+@import 'variables';
 
-    width: 100%;
-    height: 100px;
-    background-color: red;
-
-}
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';

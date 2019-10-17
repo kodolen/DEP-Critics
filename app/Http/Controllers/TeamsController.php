@@ -70,7 +70,8 @@ class TeamsController extends Controller
         $players = Player::where('team_id', $teams['team_id'])->get();
 
         return view('team', [
-            'players' => $players
+            'players' => $players,
+            'teams' => $teams
         ]);
     }
 

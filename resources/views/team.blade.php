@@ -10,6 +10,7 @@
                         <h3>{{ $player->name }}</h3>
                         <span>{{ $player->position }}</span><br>
                         <span>{{ $player->nationality }}</span>
+                        <a href="{{ url('/teams/'.$teams->id.'/'.$player->id)}}">Link</a>
                     </div>
                 @endforeach
             </div>

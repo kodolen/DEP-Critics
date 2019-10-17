@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Team;
+use App\Player;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 
@@ -12,12 +13,10 @@ class TeamsController extends Controller
     public function showTeams()
     {
         $teams = Team::all();
-        $this->fillAllPlayersInDB();
 
         if ($teams->isEmpty()) {
             $this->fillAllTeamsInDB();
             $teams = Team::all();
-            $this->fillAllPlayersInDB();
         }
 
         return view('home', [
@@ -52,27 +51,36 @@ class TeamsController extends Controller
     public function showTeam($id)
     {
         $teams = Team::findOrFail($id);
-        echo $teams['name'];
-        echo $teams['team_id'];
+
+        $checkPlayer = Player::where('team_id', $teams['team_id'])->get();
+
+        if($checkPlayer->isEmpty()){
+            $players = $this->getPlayersOfTeam($teams);
+            collect($players)
+                ->each(function ($player, $key) use ($teams) {
+                    Player::create([
+                        'name' => $player['name'],
+                        'position' => $player['position'],
+                        'nationality' => $player['nationality'],
+                        'team_id' => $teams['team_id']
+                    ]);
+                });
+        }
+
+        $players = Player::where('team_id', $teams['team_id'])->get();
+
+        return view('team', [
+            'players' => $players
+        ]);
     }
 
-    public function fillAllPlayersInDB()
+    public function getPlayersOfTeam($teams)
     {
-//        $teams_id = Team::pluck('team_id');
-//
-//        foreach ($teams_id as $team_id) {
-//            $uri = 'https://api.football-data.org/v2/teams/' . $team_id;
-//        }
-
+        $client = new Client();
+        $uri = 'https://api.football-data.org/v2/teams/' . $teams['team_id'];;
         $header = ['headers' => ['X-Auth-Token' => '6328bfcb1468465c83bfecd7bada80c7']];
-        $client = new Client(['debug' => true]);
-        $res = $client->send(array(
-            $client->get('https://api.football-data.org/v2/teams/666'),
-            $client->get('https://api.football-data.org/v2/teams/1920'),
-            $client->get('https://api.football-data.org/v2/teams/6806')
-        ));
+        $res = $client->get($uri, $header);
         $data = json_decode($res->getBody()->getContents(), true);
-        return $data;
-
+        return $data['squad'];
     }
 }

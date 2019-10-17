@@ -15,5 +15,54 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1>Critics</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            @forelse ($player->critics as $critic)
+                <div class="critic">
+                    <p>{{ $critic->user->name }} {{$critic->created_at}}</p>
+                    <p>{{ $critic->critic }}</p>
+                    <hr>
+                </div>
+            @empty
+                <p>This player has no critics</p>
+            @endforelse
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div id="add-critic">
+                <span>
+                    @if(Auth::check())
+                        Add critic
+                    @else
+                        <a href="{{ url('/login') }}">Login to add a critic</a>
+                    @endif
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div id="critic-form">
+                @if (Auth::check())
+                    {{ Form::open(['url' => '/critics', 'method' => 'POST']) }}
+                    <p>{{ Form::textarea('critic', old('critic')) }}</p>
+                    {{ Form::hidden('player_id', $player->id) }}
+                    <p>{{ Form::submit('Send') }}</p>
+                    {{ Form::close() }}
+                @endif
+            </div>
+        </div>
+    </div>
+
 @endsection
 

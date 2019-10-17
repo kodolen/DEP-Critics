@@ -30,3 +30,21 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+let getButton = document.getElementById('add-critic');
+getButton.addEventListener("click", showForm);
+let formOpen = false;
+let getForm = document.getElementById('critic-form');
+
+function showForm(){
+    if (formOpen === false){
+        console.log("open form");
+        getForm.classList.add("open");
+        formOpen = true;
+    }
+    else {
+        console.log("close form");
+        getForm.classList.remove("open");
+        formOpen = false;
+    }
+}

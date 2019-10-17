@@ -10644,3 +10644,19 @@ a.text-dark:focus {
   }
 }
 
+.critic {
+  width: 100%;
+  background-color: lightblue;
+  height: 100px;
+}
+
+#critic-form {
+  opacity: 1;
+  visibility: visible;
+}
+
+#critic-form.open {
+  opacity: 0;
+  visibility: hidden;
+}
+

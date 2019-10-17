@@ -49371,6 +49371,22 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 var app = new Vue({
   el: '#app'
 });
+var getButton = document.getElementById('add-critic');
+getButton.addEventListener("click", showForm);
+var formOpen = false;
+var getForm = document.getElementById('critic-form');
+
+function showForm() {
+  if (formOpen === false) {
+    console.log("open form");
+    getForm.classList.add("open");
+    formOpen = true;
+  } else {
+    console.log("close form");
+    getForm.classList.remove("open");
+    formOpen = false;
+  }
+}
 
 /***/ }),
 

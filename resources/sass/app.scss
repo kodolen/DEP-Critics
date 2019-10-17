@@ -6,3 +6,25 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.critic {
+    width: 100%;
+    background-color: lightblue;
+    height: 100px;
+}
+
+#critic-form {
+
+    opacity: 1;
+    visibility: visible;
+
+    &.open {
+
+        opacity: 0;
+        visibility: hidden;
+
+    }
+
+}
+
+

@@ -28,4 +28,10 @@ class CriticController extends Controller
 
         return redirect()->back();
     }
+
+    public function destroy($id){
+        $critic = Critic::findOrFail($id);
+        $critic->delete();
+        return redirect()->back();
+    }
 }

@@ -27,7 +27,19 @@
                 <div class="critic">
                     <p>{{ $critic->user->name }} {{$critic->created_at}}</p>
                     <p>{{ $critic->critic }}</p>
-                    <hr>
+
+                    @if (!Auth::guest())
+
+                        @if(Auth::user()->hasRole('moderator') || Auth::user()->hasRole('admin'))
+                            <div class="delete-critic">
+                                {!! Form::model($critic, ['method' => 'DELETE', 'action' => ['CriticController@destroy', $critic->id]]) !!}
+                                {!! Form::submit('Delete critic', ['class' => 'btn btn-danger form-control']) !!}
+                                {!! Form::close() !!}
+                            </div>
+                        @endif
+
+                    @endif
+
                 </div>
             @empty
                 <p>This player has no critics</p>

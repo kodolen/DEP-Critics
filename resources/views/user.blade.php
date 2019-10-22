@@ -38,6 +38,17 @@
 
                     </div>
 
+                    @if (Auth::user()->hasRole("admin"))
+
+                    <div class="form-group">
+
+                        {!! Form::label('role', 'Role:') !!}<br>
+                        {!! Form::select('role', $roles, $roleID, ['class' => 'form-control']) !!}
+
+                    </div>
+
+                    @endif
+
                     <div class="form-group">
 
                         {!! Form::label('favorite_team', 'Favorite team:') !!}<br>

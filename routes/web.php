@@ -24,6 +24,8 @@ Route::get('/player/{id}', 'PostsController@show')->name('posts.show');
 
 Route::resource('/critics', 'CriticController');
 
+Route::resource('/users', 'UserController');
+
 
 Auth::routes();
 

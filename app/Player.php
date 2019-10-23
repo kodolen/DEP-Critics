@@ -13,4 +13,9 @@ class Player extends Model
         return $this->hasMany('App\Critic');
     }
 
+    public function ratings()
+    {
+        return $this->hasMany('App\Rating');
+    }
+
 }

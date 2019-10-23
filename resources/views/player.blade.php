@@ -9,10 +9,11 @@
                     <h3>{{ $player->name }}</h3>
                     <span>{{ $player->position }}</span><br>
                     <span>{{ $player->nationality }}</span><br>
-                    <span>{{ $team->name }}</span>
-                    @if(Auth::user()->hasRole('prem_user'))
+                    <span>{{ $team->name }}</span><br>
+                    <span>Rating: @if($finalRating == null)Not yet rated @else{{ $finalRating }}@endif</span>
+                    @if(Auth::user()->hasRole('prem_user') && $player->ratings->where('user_id', Auth::user()->id)->count() == 0)
                         {{ Form::open(['url' => '/ratings', 'method' => 'POST']) }}
-                        <p>{{ Form::select('critic', ['1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10']) }}</p>
+                        <p>{{ Form::select('rating', [1 => "1", 2 => "2", 3 => "3", 4 => '4', 5 => '5', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10']) }}</p>
                         {{ Form::hidden('player_id', $player->id) }}
                         <p>{{ Form::submit('Send') }}</p>
                         {{ Form::close() }}

@@ -10,6 +10,13 @@
                     <span>{{ $player->position }}</span><br>
                     <span>{{ $player->nationality }}</span><br>
                     <span>{{ $team->name }}</span>
+                    @if(Auth::user()->hasRole('prem_user'))
+                        {{ Form::open(['url' => '/ratings', 'method' => 'POST']) }}
+                        <p>{{ Form::select('critic', ['1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10']) }}</p>
+                        {{ Form::hidden('player_id', $player->id) }}
+                        <p>{{ Form::submit('Send') }}</p>
+                        {{ Form::close() }}
+                    @endif
                 </div>
             </div>
         </div>

@@ -19,6 +19,7 @@ Route::get('/teams/{id}/{player_id}', 'PlayerController@showPlayer');
 Route::get('/player/{id}', 'PostsController@show')->name('posts.show');
 
 Route::resource('/critics', 'CriticController');
+Route::resource('/ratings', 'RatingController');
 Route::resource('/users', 'UserController');
 
 

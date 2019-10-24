@@ -15,6 +15,8 @@
 Route::get('/teams', 'TeamsController@showTeams');
 Route::get('/teams/{id}', 'TeamsController@showTeam');
 Route::get('/teams/{id}/{player_id}', 'PlayerController@showPlayer');
+Route::get('/search', 'TeamsController@search');
+
 
 Route::get('/player/{id}', 'PostsController@show')->name('posts.show');
 

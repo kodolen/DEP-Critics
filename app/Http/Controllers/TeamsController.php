@@ -84,4 +84,21 @@ class TeamsController extends Controller
         $data = json_decode($res->getBody()->getContents(), true);
         return $data['squad'];
     }
+
+    public function search(){
+
+        $team_id = request('team_id');
+        $request = request('search');
+        $position = request('position');
+
+        $players = Player::where('name', 'like', '%'.$request.'%')->where('team_id', $team_id)->where('position', $position)->get();
+
+        $teams = Team::where('team_id', $team_id)->first();
+
+        return view('team', [
+            'players' => $players,
+            'teams' => $teams
+        ]);
+
+    }
 }

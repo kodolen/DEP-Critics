@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Player extends Model
 {
-    protected $fillable = ['name', 'position', 'nationality', 'team_id'];
+    protected $fillable = ['name', 'nationality', 'position', 'team_id'];
 
     public function critics()
     {
@@ -17,5 +17,4 @@ class Player extends Model
     {
         return $this->hasMany('App\Rating');
     }
-
 }

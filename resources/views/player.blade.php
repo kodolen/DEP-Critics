@@ -11,12 +11,14 @@
                     <span>{{ $player->nationality }}</span><br>
                     <span>{{ $team->name }}</span><br>
                     <span>Rating: @if($finalRating == null)Not yet rated @else{{ $finalRating }}@endif</span>
-                    @if(Auth::user()->hasRole('prem_user') && $player->ratings->where('user_id', Auth::user()->id)->count() == 0)
-                        {{ Form::open(['url' => '/ratings', 'method' => 'POST']) }}
-                        <p>{{ Form::select('rating', [1 => "1", 2 => "2", 3 => "3", 4 => '4', 5 => '5', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10']) }}</p>
-                        {{ Form::hidden('player_id', $player->id) }}
-                        <p>{{ Form::submit('Send') }}</p>
-                        {{ Form::close() }}
+                    @if (!Auth::guest())
+                        @if(Auth::user()->hasRole('prem_user') && $player->ratings->where('user_id', Auth::user()->id)->count() == 0)
+                            {{ Form::open(['url' => '/ratings', 'method' => 'POST']) }}
+                            <p>{{ Form::select('rating', [1 => "1", 2 => "2", 3 => "3", 4 => '4', 5 => '5', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10']) }}</p>
+                            {{ Form::hidden('player_id', $player->id) }}
+                            <p>{{ Form::submit('Send') }}</p>
+                            {{ Form::close() }}
+                        @endif
                     @endif
                 </div>
             </div>
@@ -47,7 +49,6 @@
                                     {!! Form::model($critic, ['method' => 'DELETE', 'action' => ['CriticController@destroy', $critic->id]]) !!}
                                     {!! Form::submit('Delete critic', ['class' => 'btn btn-danger form-control']) !!}
                                     {!! Form::close() !!}
-                                    {{--                                    {!! Form::checkbox('hidden', 0, $critic->id, ['class' => 'check']) !!}--}}
 
                                     <label class="switch">
                                         <input type="checkbox" class="check" value="testuser"

@@ -48,3 +48,42 @@ function showForm(){
         formOpen = false;
     }
 }
+
+$(document).ready(function(){
+
+    let checkbox_value;
+
+    $('input[type="checkbox"]').click(function(){
+        let critic_id = this.getAttribute("data-valuetwo");
+        let hidden = $(this).parents('.critic');
+        if($(this).is(":checked")){
+            checkbox_value = 1;
+            console.log(checkbox_value);
+            hidden.addClass('hidden');
+            ajax(checkbox_value,critic_id)
+        }
+        else if($(this).is(":not(:checked)")){
+            checkbox_value = 0;
+            console.log(checkbox_value);
+            hidden.removeClass('hidden');
+            ajax(checkbox_value,critic_id)
+        }
+    });
+});
+
+function ajax(checkbox_value, critic_id){
+    $.ajax({
+        url:'http://localhost:8000/hide/action',
+        method:'GET',
+        data: {checkbox_value: checkbox_value, critic_id:critic_id},
+        dataType:'json',
+        success:function(data)
+        {
+
+        }
+    })
+}
+
+
+
+

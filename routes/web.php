@@ -22,6 +22,9 @@ Route::resource('/critics', 'CriticController');
 Route::resource('/ratings', 'RatingController');
 Route::resource('/users', 'UserController');
 
+Route::get('/hide', 'CriticController@index');
+Route::get('/hide/action', 'CriticController@action')->name('hide.action');
+
 
 Auth::routes();
 

@@ -13,8 +13,11 @@ class PlayerController extends Controller
     public function showPlayer($id, $player_id){
         $team = Team::findOrFail($id);
         $player = Player::findOrFail($player_id);
+        $critics = $player->critics->where('hidden', 0)->all();
         $avgRating = 0;
         $finalRating = 0;
+
+//        dd($critics);
 
         if(!count($player->ratings) == 0){
             for($i = 0; $i < count($player->ratings); $i++){
@@ -26,7 +29,8 @@ class PlayerController extends Controller
         return view('player', [
             'player' => $player,
             'team' => $team,
-            'finalRating' => $finalRating
+            'finalRating' => $finalRating,
+            'critic' => $critics
         ]);
     }
 }

@@ -9,7 +9,7 @@ class Critic extends Model
 {
 //    use DatePresenter;
 
-    protected $fillable = ['critic', 'user_id', 'player_id'];
+    protected $fillable = ['critic', 'user_id', 'player_id', 'hidden'];
 
     public function player()
     {

@@ -18,6 +18,7 @@ class CreateCriticsTable extends Migration
             $table->text('critic');
             $table->integer('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('player_id')->references('id')->on('player')->onDelete('cascade');
+            $table->integer('hidden')->default(0);
             $table->timestamps();
         });
     }

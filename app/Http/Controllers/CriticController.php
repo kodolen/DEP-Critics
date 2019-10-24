@@ -41,4 +41,17 @@ class CriticController extends Controller
         $critic->delete();
         return redirect()->back();
     }
+
+    public function action(Request $request){
+
+        if($request->ajax()){
+            $checkbox_value = $request->get('checkbox_value');
+            $critic_id = $request->get('critic_id');
+
+            $critic = Critic::findOrFail($critic_id);
+            $critic->hidden = $checkbox_value;
+            $critic->save();
+        }
+
+    }
 }

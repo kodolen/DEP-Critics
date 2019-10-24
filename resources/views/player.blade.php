@@ -32,23 +32,35 @@
     <div class="row">
         <div class="col-md-8 offset-md-2">
             @forelse ($player->critics as $critic)
-                <div class="critic">
-                    <p>{{ $critic->user->name }} {{$critic->created_at}}</p>
-                    <p>{{ $critic->critic }}</p>
-
+                @if($critic->hidden == 0 && (Auth::user()->hasRole('user') || Auth::user()->hasRole('prem_user')))
+                    <div class="critic">
+                        <p>{{ $critic->user->name }} {{$critic->created_at}}</p>
+                        <p>{{ $critic->critic }}</p>
+                    </div>
+                @else
                     @if (!Auth::guest())
-
                         @if(Auth::user()->hasRole('moderator') || Auth::user()->hasRole('admin'))
-                            <div class="delete-critic">
-                                {!! Form::model($critic, ['method' => 'DELETE', 'action' => ['CriticController@destroy', $critic->id]]) !!}
-                                {!! Form::submit('Delete critic', ['class' => 'btn btn-danger form-control']) !!}
-                                {!! Form::close() !!}
+                            <div class="critic @if($critic->hidden == 1) hidden @endif">
+                                <p>{{ $critic->user->name }} {{$critic->created_at}}</p>
+                                <p>{{ $critic->critic }}</p>
+                                <div class="delete-critic">
+                                    {!! Form::model($critic, ['method' => 'DELETE', 'action' => ['CriticController@destroy', $critic->id]]) !!}
+                                    {!! Form::submit('Delete critic', ['class' => 'btn btn-danger form-control']) !!}
+                                    {!! Form::close() !!}
+                                    {{--                                    {!! Form::checkbox('hidden', 0, $critic->id, ['class' => 'check']) !!}--}}
+
+                                    <label class="switch">
+                                        <input type="checkbox" class="check" value="testuser"
+                                               data-valuetwo="{{ $critic->id }}"
+                                               @if($critic->hidden == 1) checked @endif>
+                                        <span class="slider"></span>
+                                    </label>
+
+                                </div>
                             </div>
                         @endif
-
                     @endif
-
-                </div>
+                @endif
             @empty
                 <p>This player has no critics</p>
             @endforelse
@@ -85,4 +97,5 @@
     </div>
 
 @endsection
+
 

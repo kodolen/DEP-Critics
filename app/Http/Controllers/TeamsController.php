@@ -62,12 +62,13 @@ class TeamsController extends Controller
                         'name' => $player['name'],
                         'position' => $player['position'],
                         'nationality' => $player['nationality'],
-                        'team_id' => $teams['team_id']
+                        'team_id' => $teams['team_id'],
+                        'shirtNumber' =>$player['shirtNumber']
                     ]);
                 });
         }
 
-        $players = Player::where('team_id', $teams['team_id'])->get();
+        $players = Player::where('team_id', $teams['team_id'])->orderBy('shirtNumber', 'ASC')->get();
 
         return view('team', [
             'players' => $players,
@@ -91,7 +92,12 @@ class TeamsController extends Controller
         $request = request('search');
         $position = request('position');
 
-        $players = Player::where('name', 'like', '%'.$request.'%')->where('team_id', $team_id)->where('position', $position)->get();
+        if($position == ""){
+            $players = Player::where('name', 'like', '%'.$request.'%')->where('team_id', $team_id)->get();
+        }
+        else {
+            $players = Player::where('name', 'like', '%'.$request.'%')->where('team_id', $team_id)->where('position', $position)->get();
+        }
 
         $teams = Team::where('team_id', $team_id)->first();
 

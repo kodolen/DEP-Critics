@@ -10806,6 +10806,7 @@ input:checked + .slider:before {
 .navbar {
   position: fixed;
   width: 100%;
+  z-index: 99;
 }
 
 .team-container {
@@ -10842,5 +10843,88 @@ input:checked + .slider:before {
 .sec-button {
   border: 1px solid orange;
   color: orange;
+}
+
+.player-card {
+  width: 100%;
+  margin: 20px 0;
+  border: 1px solid lightgray;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.player-card .play-wrapper {
+  padding-left: 20px;
+}
+
+.player-card .shirt-number {
+  font-size: 20px;
+}
+
+.detail-holder {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 50px;
+}
+
+.detail-holder .logo-team-holder {
+  width: 200px;
+  padding-right: 12px;
+}
+
+.detail-holder .logo-team-holder img {
+  width: 100%;
+}
+
+.search-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 0;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+.search-wrapper input:focus,
+.search-wrapper select:focus,
+.search-wrapper textarea:focus,
+.search-wrapper form:focus,
+.search-wrapper button:focus {
+  outline: 0;
+}
+
+.search-wrapper form {
+  width: 100%;
+}
+
+.search-wrapper .search-form {
+  width: 79%;
+  height: 50px;
+  border: none;
+  border-left: 1px solid lightgray;
+}
+
+.search-wrapper select {
+  width: 10%;
+  height: 50px;
+  background-color: transparent;
+  border: none;
+}
+
+.search-wrapper .btn {
+  width: 9%;
+  height: 50px;
+}
+
+.card-link {
+  color: black;
+}
+
+.card-link:hover {
+  color: black;
 }
 

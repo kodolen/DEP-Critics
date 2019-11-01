@@ -189,6 +189,7 @@ input:checked + .slider:before {
 
     position: fixed;
     width: 100%;
+    z-index: 99;
 
 }
 
@@ -237,6 +238,106 @@ input:checked + .slider:before {
 
     border: 1px solid orange;
     color: orange;
+
+}
+
+.player-card {
+
+    width: 100%;
+    margin: 20px 0;
+    border: 1px solid lightgray;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    .play-wrapper {
+
+        padding-left: 20px;
+
+    }
+
+    .shirt-number {
+
+        font-size: 20px;
+
+    }
+
+}
+
+.detail-holder {
+
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 50px;
+
+    .logo-team-holder {
+
+        width: 200px;
+        padding-right: 12px;
+
+        img {
+
+            width: 100%;
+
+        }
+
+    }
+
+}
+
+.search-wrapper {
+
+    input:focus, select:focus, textarea:focus, form:focus, button:focus {outline:0;}
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 0;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+
+    form {
+
+        width: 100%;
+
+    }
+
+    .search-form {
+
+        width: 79%;
+        height: 50px;
+        border: none;
+        border-left: 1px solid lightgray;
+    }
+
+    select {
+
+        width: 10%;
+        height: 50px;
+        background-color: transparent;
+        border: none;
+
+    }
+
+    .btn {
+
+        width: 9%;
+        height: 50px;
+
+    }
+}
+
+.card-link {
+
+    color: black;
+
+    &:hover {
+
+        color: black;
+
+    }
 
 }
 

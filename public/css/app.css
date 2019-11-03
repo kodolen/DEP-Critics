@@ -10697,8 +10697,10 @@ a.text-dark:focus {
 
 .critic {
   width: 100%;
-  background-color: lightblue;
-  height: 100px;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  height: auto;
   margin: 40px 0;
   position: relative;
 }
@@ -10718,14 +10720,20 @@ a.text-dark:focus {
   opacity: 0.5;
 }
 
+.critic .created-by {
+  position: absolute;
+  top: -22px;
+  left: 0;
+}
+
 #critic-form {
-  opacity: 1;
-  visibility: visible;
+  opacity: 0;
+  visibility: hidden;
 }
 
 #critic-form.open {
-  opacity: 0;
-  visibility: hidden;
+  opacity: 1;
+  visibility: visible;
 }
 
 .readonly {
@@ -10744,8 +10752,8 @@ a.text-dark:focus {
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 30px;
+  height: 14px;
   margin-top: 12px;
 }
 
@@ -10773,10 +10781,10 @@ a.text-dark:focus {
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
+  height: 13px;
+  width: 13px;
+  left: 2px;
+  bottom: 1px;
   background-color: white;
   transition: 0.4s;
 }
@@ -10790,13 +10798,13 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  transform: translateX(26px);
+  transform: translateX(13px);
 }
 
 /* Rounded sliders */
 
 .slider.round {
-  border-radius: 34px;
+  border-radius: 17px;
 }
 
 .slider.round:before {
@@ -10926,5 +10934,17 @@ input:checked + .slider:before {
 
 .card-link:hover {
   color: black;
+}
+
+.player-detail-container {
+  padding-top: 100px;
+}
+
+.critic-container {
+  padding-top: 80px;
+}
+
+#add-critic {
+  cursor: pointer;
 }
 

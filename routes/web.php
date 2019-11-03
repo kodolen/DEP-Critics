@@ -11,6 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/teams', 'TeamsController@showTeams');
+Route::get('/teams/{id}', 'TeamsController@showTeam');
+Route::get('/teams/{id}/{player_id}', 'PlayerController@showPlayer');
+Route::get('/search', 'TeamsController@search');
+
+
+Route::get('/player/{id}', 'PostsController@show')->name('posts.show');
+
+Route::resource('/critics', 'CriticController');
+Route::resource('/ratings', 'RatingController');
+Route::resource('/users', 'UserController');
+
+Route::get('/hide', 'CriticController@index');
+Route::get('/hide/action', 'CriticController@action')->name('hide.action');
+
+
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');

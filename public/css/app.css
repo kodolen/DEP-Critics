@@ -10948,3 +10948,19 @@ input:checked + .slider:before {
   cursor: pointer;
 }
 
+.users-container {
+  padding-top: 80px;
+}
+
+.users-container .user-card {
+  padding: 12px 0;
+}
+
+.users-container {
+  padding-top: 80px;
+}
+
+.reg-container {
+  padding-top: 80px;
+}
+

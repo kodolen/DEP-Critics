@@ -43,11 +43,12 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%,-50%);
+        transform: translate(-50%, -50%);
 
     }
 
 }
+
 .prim-button {
 
     background-color: orange;
@@ -263,6 +264,7 @@ input:checked + .slider:before {
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
+
     .play-wrapper {
 
         padding-left: 20px;
@@ -300,7 +302,9 @@ input:checked + .slider:before {
 
 .search-wrapper {
 
-    input:focus, select:focus, textarea:focus, form:focus, button:focus {outline:0;}
+    input:focus, select:focus, textarea:focus, form:focus, button:focus {
+        outline: 0;
+    }
 
     display: flex;
     flex-direction: row;
@@ -370,6 +374,31 @@ input:checked + .slider:before {
     cursor: pointer;
 
 }
+
+.users-container {
+
+    padding-top: 80px;
+
+    .user-card {
+
+        padding: 12px 0;
+
+    }
+
+}
+
+.users-container {
+
+    padding-top: 80px;
+
+}
+
+.reg-container {
+
+    padding-top: 80px;
+
+}
+
 
 
 
